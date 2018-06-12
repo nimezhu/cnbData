@@ -7,8 +7,8 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/nimezhu/asheets"
+	"github.com/nimezhu/box"
 	"github.com/nimezhu/data"
-	"github.com/nimezhu/sand"
 	"github.com/urfave/cli"
 	"golang.org/x/oauth2/google"
 )
@@ -36,17 +36,11 @@ func CmdStart(c *cli.Context) error {
 	}
 
 	//cred := c.String("cred")
-	s := sand.Sand{
+	s := box.Box{
 		"CMU Dataome Browser",
 		root,
 		DIR,
 		VERSION,
-		[]string{},
-		[]string{},
-		[]string{},
-		"S.render",
-		make(map[string]string),
-		"",
 	}
 	idxRoot := s.InitIdxRoot(root) //???
 	//sand.InitCred(cred)
