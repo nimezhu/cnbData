@@ -15,7 +15,6 @@ import (
 	"github.com/nimezhu/asheets"
 	"github.com/nimezhu/data"
 	"github.com/urfave/cli"
-	"golang.org/x/oauth2/google"
 	sheets "google.golang.org/api/sheets/v4"
 )
 
@@ -25,7 +24,7 @@ type App struct {
 }
 
 var rpApp = App{
-	"Reverse Proxy Dataome Browser",
+	"CMU Reverse Proxy Dataome Server",
 	"0.0.1",
 }
 
@@ -36,14 +35,7 @@ func CmdRP(c *cli.Context) {
 	title := c.String("title")
 	sheetid := c.String("input")
 	port := c.Int("port")
-	b, err := data.Asset("client_secret.json")
-	if err != nil {
-		log.Fatalf("Unable to read client secret file: %v", err)
-	}
-	config, err := google.ConfigFromJSON(b, "https://www.googleapis.com/auth/spreadsheets")
-	if err != nil {
-		log.Fatalf("Unable to parse client secret file to config: %v", err)
-	}
+	config := defaultConfig()
 	gA := asheets.NewGAgent(dir)
 	client := gA.GetClient(ctx, config)
 	srv, err := sheets.New(client)
@@ -197,10 +189,9 @@ func CmdRP(c *cli.Context) {
 		}
 	})
 	server := &http.Server{Addr: ":" + strconv.Itoa(port), Handler: router}
+	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 	err = server.ListenAndServe()
 	if err != nil {
 		panic(err)
 	}
-	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
-
 }

@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"log"
 	"path"
 
 	"github.com/gorilla/mux"
@@ -10,7 +9,6 @@ import (
 	"github.com/nimezhu/box"
 	"github.com/nimezhu/data"
 	"github.com/urfave/cli"
-	"golang.org/x/oauth2/google"
 )
 
 func CmdStart(c *cli.Context) error {
@@ -19,34 +17,27 @@ func CmdStart(c *cli.Context) error {
 	mode := "w"
 	root := c.String("root")
 	router := mux.NewRouter()
-
-	dir := path.Join(root, DIR)
-	ctx := context.Background()
-	b, err := data.Asset("client_secret.json")
-	if err != nil {
-		log.Fatalf("Unable to read client secret file: %v", err)
+	if GuessURIType(uri) == "gsheet" {
+		dir := path.Join(root, DIR)
+		ctx := context.Background()
+		config := defaultConfig()
+		gA := asheets.NewGAgent(dir)
+		if !gA.HasCacheFile() {
+			gA.GetClient(ctx, config)
+		}
 	}
-	config, err := google.ConfigFromJSON(b, "https://www.googleapis.com/auth/spreadsheets")
-	if err != nil {
-		log.Fatalf("Unable to parse client secret file to config: %v", err)
-	}
-	gA := asheets.NewGAgent(dir)
-	if !gA.HasCacheFile() {
-		gA.GetClient(ctx, config)
-	}
-
 	//cred := c.String("cred")
 	s := box.Box{
-		"CMU Dataome Browser",
+		"CMU Dataome Server",
 		root,
 		DIR,
 		VERSION,
 	}
-	idxRoot := s.InitIdxRoot(root) //???
-	//sand.InitCred(cred)
-	addDataServer(uri, router, idxRoot) //TODO
 	s.InitRouter(router)
 	s.InitHome(root)
+	idxRoot := s.InitIdxRoot(root) //???
+	l := data.NewLoader(idxRoot)
+	l.Load(uri, router)
 	router.Use(data.CorsMiddleware)
 	s.Start(mode, port, router)
 

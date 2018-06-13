@@ -11,10 +11,8 @@ import (
 	"time"
 
 	"github.com/nimezhu/asheets"
-	"github.com/nimezhu/data"
 	"github.com/tidwall/gjson"
 	"github.com/urfave/cli"
-	"golang.org/x/oauth2/google"
 	sheets "google.golang.org/api/sheets/v4"
 )
 
@@ -23,14 +21,7 @@ func CmdStatus(c *cli.Context) {
 	ctx := context.Background()
 	title := c.String("title")
 	sheetid := c.String("input")
-	b, err := data.Asset("client_secret.json")
-	if err != nil {
-		log.Fatalf("Unable to read client secret file: %v", err)
-	}
-	config, err := google.ConfigFromJSON(b, "https://www.googleapis.com/auth/spreadsheets")
-	if err != nil {
-		log.Fatalf("Unable to parse client secret file to config: %v", err)
-	}
+	config := defaultConfig()
 	gA := asheets.NewGAgent(dir)
 	client := gA.GetClient(ctx, config)
 	srv, err := sheets.New(client)
@@ -83,19 +74,9 @@ func CmdStatus(c *cli.Context) {
 		}
 
 	}
-	/*
-		writeRange := title + "!H5"
-		var vr *sheets.ValueRange{}
-
-		myval := []interface{}{"One", "Two", "Three"}
-		vr.Values = append(vr.Values, myval)
-		//_, err = srv.Spreadsheets.Values.Update(sheetid, writeRange, &vr).ValueInputOption("RAW").Do()
-	*/
-	//title + "!H5"
 
 	//TODO make it into function
 	rangeData := title + "!" + statusCol + "2"
-	//values := [][]interface{}{{"sample_A1", "sample_C1"}, {"sample_A2", "sample_C2"}, {"sample_A3", "sample_A3"}}
 	rb := &sheets.BatchUpdateValuesRequest{
 		ValueInputOption: "RAW",
 	}
