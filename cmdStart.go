@@ -28,7 +28,7 @@ func CmdStart(c *cli.Context) error {
 	}
 	//cred := c.String("cred")
 	s := box.Box{
-		"CMU Dataome Server",
+		"CMU Dataome Browser",
 		root,
 		DIR,
 		VERSION,
@@ -38,7 +38,8 @@ func CmdStart(c *cli.Context) error {
 	idxRoot := s.InitIdxRoot(root) //???
 	l := data.NewLoader(idxRoot)
 	l.Load(uri, router)
-	router.Use(data.CorsMiddleware)
+	cors := data.CorsFactory("*")
+	router.Use(cors)
 	s.Start(mode, port, router)
 
 	return nil

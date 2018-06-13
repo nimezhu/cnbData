@@ -24,7 +24,7 @@ type App struct {
 }
 
 var rpApp = App{
-	"CMU Reverse Proxy Dataome Server",
+	"CMU Reverse Proxy Dataome Browser",
 	"0.0.1",
 }
 
@@ -105,7 +105,8 @@ func CmdRP(c *cli.Context) {
 
 	fmt.Println("Done")
 	router := mux.NewRouter()
-	router.Use(data.CorsMiddleware)
+	cors := data.CorsFactory("*")
+	router.Use(cors)
 	router.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
 		a, _ := json.Marshal(rpApp)
 		w.Write(a)
