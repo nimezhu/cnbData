@@ -113,19 +113,18 @@ func CmdRP(c *cli.Context) {
 
 	fmt.Println("Done")
 	router := mux.NewRouter()
+	router.Use(data.CorsMiddleware)
 	router.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
 		a, _ := json.Marshal(rpApp)
 		w.Write(a)
 	})
 	router.HandleFunc("/genomes", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
 		a, _ := json.Marshal(genomes)
 		w.Write(a)
 	})
 	router.HandleFunc("/{genome}/ls", func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
-		w.Header().Set("Access-Control-Allow-Origin", "*")
+
 		g := vars["genome"]
 		dbAll := []DataIndex{}
 		for _, rid := range genomeMap[g] {
@@ -176,7 +175,7 @@ func CmdRP(c *cli.Context) {
 		if err8 == nil {
 			body, err9 := ioutil.ReadAll(res.Body)
 			if err9 == nil {
-				w.Header().Set("Access-Control-Allow-Origin", "*")
+
 				w.Write(body)
 			}
 		}
@@ -192,7 +191,7 @@ func CmdRP(c *cli.Context) {
 		if err8 == nil {
 			body, err9 := ioutil.ReadAll(res.Body)
 			if err9 == nil {
-				w.Header().Set("Access-Control-Allow-Origin", "*")
+
 				w.Write(body)
 			}
 		}

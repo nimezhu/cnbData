@@ -47,6 +47,7 @@ func CmdStart(c *cli.Context) error {
 	addDataServer(uri, router, idxRoot) //TODO
 	s.InitRouter(router)
 	s.InitHome(root)
+	router.Use(data.CorsMiddleware)
 	s.Start(mode, port, router)
 
 	return nil
