@@ -2,7 +2,6 @@ package main
 
 import (
 	"os"
-	"path"
 
 	"github.com/urfave/cli"
 )
@@ -44,7 +43,7 @@ func main() {
 				cli.StringFlag{
 					Name:  "root,r",
 					Usage: "root directory",
-					Value: path.Join(home),
+					Value: home,
 				},
 			},
 		},
@@ -71,14 +70,15 @@ func main() {
 				cli.StringFlag{
 					Name:  "root,r",
 					Usage: "root directory",
-					Value: path.Join(home),
+					Value: home,
 				},
 			},
 		},
+
 		{
-			Name:   "status",
-			Usage:  "get data servers status",
-			Action: CmdStatus,
+			Name:   "maintain",
+			Usage:  "maintain data servers",
+			Action: CmdMaintain,
 			Flags: []cli.Flag{
 				cli.StringFlag{
 					Name:  "input,i",
@@ -93,7 +93,7 @@ func main() {
 				cli.StringFlag{
 					Name:  "root,r",
 					Usage: "root directory",
-					Value: path.Join(home),
+					Value: home,
 				},
 			},
 		},

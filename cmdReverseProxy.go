@@ -50,28 +50,11 @@ func CmdRP(c *cli.Context) {
 		fmt.Println(i, r)
 	}
 	//TODO Wrapper to Class
-	var statusCol string
-	var lastCheckCol string
-	var uriCol string
+	name2idx := make(map[string]int)
 	for i, h := range head {
-		if strings.ToLower(h) == "status" {
-			statusCol = asheets.NumberToColName(i + 1)
-		}
-		if strings.ToLower(h) == "lastchecktime" {
-			lastCheckCol = asheets.NumberToColName(i + 1)
-		}
-		if strings.ToLower(h) == "status" {
-			statusCol = asheets.NumberToColName(i + 1)
-		}
-		if strings.ToLower(h) == "uri" {
-			uriCol = asheets.NumberToColName(i + 1)
-		}
-		fmt.Println(asheets.NumberToColName(i+1), h)
+		name2idx[strings.ToLower(h)] = i
 	}
-	uriColIdx := asheets.ColNameToNumber(uriCol) - 1
-	fmt.Println("Status Col:", statusCol)
-	fmt.Println("LastCheckTime Col:", lastCheckCol)
-	//values := [][]interface{}{}
+	uriColIdx := name2idx["uri"]
 	var genomes []string
 	genomeMap := make(map[string][]string)
 	for _, rid := range rowid {
