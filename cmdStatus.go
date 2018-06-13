@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/nimezhu/asheets"
+	"github.com/nimezhu/data"
 	"github.com/tidwall/gjson"
 	"github.com/urfave/cli"
 	sheets "google.golang.org/api/sheets/v4"
@@ -21,7 +22,7 @@ func CmdStatus(c *cli.Context) {
 	ctx := context.Background()
 	title := c.String("title")
 	sheetid := c.String("input")
-	config := defaultConfig()
+	config := data.GsheetConfig()
 	gA := asheets.NewGAgent(dir)
 	client := gA.GetClient(ctx, config)
 	srv, err := sheets.New(client)

@@ -35,7 +35,7 @@ func CmdRP(c *cli.Context) {
 	title := c.String("title")
 	sheetid := c.String("input")
 	port := c.Int("port")
-	config := defaultConfig()
+	config := data.GsheetConfig()
 	gA := asheets.NewGAgent(dir)
 	client := gA.GetClient(ctx, config)
 	srv, err := sheets.New(client)
