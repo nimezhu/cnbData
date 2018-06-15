@@ -88,7 +88,7 @@ func CmdRP(c *cli.Context) {
 
 	fmt.Println("Done")
 	router := mux.NewRouter()
-	cors := data.CorsFactory("*")
+	cors := data.CorsFactory(CORS)
 	router.Use(cors)
 	router.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
 		a, _ := json.Marshal(rpApp)

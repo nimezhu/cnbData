@@ -27,13 +27,17 @@ func ls(dir string) []os.FileInfo {
 	return files
 }
 
-/* CNB File Server for Simple 3D Structure */
+/* CNB File Server for Simple 3D Structure or Other files
+       file server with meta.tsv for directory (alias)
+			 easily manage files with or without google sheets
+			 file server support range.
+
 /* interface: ls and get/file */
 func CmdFile(c *cli.Context) {
 	root := c.String("root")
 	port := c.Int("port")
 	router := mux.NewRouter()
-	cors := data.CorsFactory("*")
+	cors := data.CorsFactory(CORS)
 	router.Use(cors)
 	router.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
 		a, _ := json.Marshal(fileApp)

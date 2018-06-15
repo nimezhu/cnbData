@@ -8,6 +8,7 @@ import (
 
 const (
 	VERSION = "0.0.8"
+	CORS    = "*"
 	DIR     = ".cnbData"
 )
 
@@ -15,7 +16,7 @@ func main() {
 	app := cli.NewApp()
 	app.Version = VERSION
 	app.Name = "cnb dataserver tools"
-	app.Usage = "cnbData start -i [[google_sheet_id]]"
+	app.Usage = "cnbData start -i [[google_sheet_id OR xls file]] -p [[port]]"
 	app.EnableBashCompletion = true //TODO
 	app.Flags = []cli.Flag{
 		cli.BoolFlag{

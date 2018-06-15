@@ -39,7 +39,7 @@ func CmdStart(c *cli.Context) error {
 	l := data.NewLoader(idxRoot)
 	l.Plugins["tsv"] = pluginTsv
 	l.Load(uri, router)
-	cors := data.CorsFactory("*")
+	cors := data.CorsFactory(CORS)
 	router.Use(cors)
 	s.Start(mode, port, router)
 
