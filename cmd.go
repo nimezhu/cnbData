@@ -97,6 +97,23 @@ func main() {
 				},
 			},
 		},
+		{
+			Name:   "file",
+			Usage:  "start a file server",
+			Action: CmdFile,
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  "root,r", //TODO
+					Usage: "root directory",
+					Value: home,
+				},
+				cli.IntFlag{
+					Name:  "port,p",
+					Usage: "data server port",
+					Value: 8080,
+				},
+			},
+		},
 	}
 	app.Run(os.Args)
 }

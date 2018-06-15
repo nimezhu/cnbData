@@ -37,6 +37,7 @@ func CmdStart(c *cli.Context) error {
 	s.InitHome(root)
 	idxRoot := s.InitIdxRoot(root) //???
 	l := data.NewLoader(idxRoot)
+	l.Plugins["tsv"] = pluginTsv
 	l.Load(uri, router)
 	cors := data.CorsFactory("*")
 	router.Use(cors)
