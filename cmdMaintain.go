@@ -32,7 +32,8 @@ func CmdMaintain(c *cli.Context) {
 	if err != nil {
 		log.Fatalf("Unable to retrieve Sheets Client %v", err)
 	}
-	head, rowid, valueMap := asheets.ReadSheet(title, srv, sheetid, "A")
+	v, _ := asheets.ReadSheet(title, srv, sheetid, "A")
+	head, rowid, valueMap := v.ColIds, v.RowIds, v.RowValue
 	name2col := make(map[string]string)
 	name2idx := make(map[string]int)
 	for i, h := range head {

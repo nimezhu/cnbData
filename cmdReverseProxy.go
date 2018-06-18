@@ -44,7 +44,8 @@ func CmdRP(c *cli.Context) {
 	}
 
 	//Wrapper to Class
-	head, rowid, valueMap := asheets.ReadSheet(title, srv, sheetid, "A")
+	v, _ := asheets.ReadSheet(title, srv, sheetid, "A")
+	head, rowid, valueMap := v.ColIds, v.RowIds, v.RowValue
 	//fmt.Println(valueMap)
 	for i, r := range rowid {
 		fmt.Println(i, r)
