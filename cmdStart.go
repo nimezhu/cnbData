@@ -41,6 +41,7 @@ func CmdStart(c *cli.Context) error {
 	l.Load(uri, router)
 	cors := data.CorsFactory(CORS)
 	router.Use(cors)
+	router.Use(cred)
 	s.Start(mode, port, router)
 
 	return nil
