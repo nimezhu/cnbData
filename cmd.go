@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"path"
 
 	"github.com/urfave/cli"
 )
@@ -112,6 +113,18 @@ func main() {
 					Name:  "port,p",
 					Usage: "data server port",
 					Value: 8080,
+				},
+			},
+		},
+		{
+			Name:   "userdb",
+			Usage:  "user db info",
+			Action: CmdUserDb,
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  "i,input", //TODO
+					Usage: "input file",
+					Value: path.Join(home, ".cnb/user.db"),
 				},
 			},
 		},
