@@ -42,7 +42,7 @@ func CmdStart(c *cli.Context) error {
 	cors := data.CorsFactory(CORS)
 	router.Use(cors)
 	router.Use(cred)
-	router.Use(userMiddleware)
+	//router.Use(userMiddleware)
 	/* Add User Control
 	 * For Specific Group User Email
 	 */
