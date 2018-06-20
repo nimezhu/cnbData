@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"net/http"
 	"path"
 
 	"github.com/gorilla/mux"
@@ -42,6 +43,7 @@ func CmdStart(c *cli.Context) error {
 	cors := data.CorsFactory(CORS)
 	router.Use(cors)
 	router.Use(cred)
+	//router.Use(strictCorsFactory(CORS))
 	//router.Use(userMiddleware)
 	/* Add User Control
 	 * For Specific Group User Email
@@ -49,4 +51,16 @@ func CmdStart(c *cli.Context) error {
 	s.Start(mode, port, router)
 
 	return nil
+}
+
+func strictCorsFactory(sites string) func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if r.Header.Get("Origin") == sites {
+				next.ServeHTTP(w, r)
+			} else {
+				w.Write([]byte("not authorized"))
+			}
+		})
+	}
 }
