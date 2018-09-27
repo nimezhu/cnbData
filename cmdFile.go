@@ -15,7 +15,7 @@ import (
 )
 
 var fileApp = App{
-	"CMU Fileome Browser",
+	"CMU Fileome Server",
 	"0.0.1",
 }
 
@@ -27,12 +27,13 @@ func ls(dir string) []os.FileInfo {
 	return files
 }
 
-/* CNB File Server for Simple 3D Structure or Other files
-       file server with meta.tsv for directory (alias)
-			 easily manage files with or without google sheets
-			 file server support range.
+/* CNB
+	File Server for Simple 3D Structure or Other files
+  file server with meta.tsv for directory (alias)
+	easily manage files with or without google sheets
+	file server support range.
 
-/* interface: ls and get/file */
+/* interface: ls dir and get/file */
 func CmdFile(c *cli.Context) {
 	root := c.String("root")
 	port := c.Int("port")
@@ -43,7 +44,7 @@ func CmdFile(c *cli.Context) {
 		a, _ := json.Marshal(fileApp)
 		w.Write(a)
 	})
-	router.HandleFunc("/{dir:.*}/ls", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/ls/{dir:.*}", func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
 		dir := vars["dir"]
 		fs := ls(path.Join(root, dir))
@@ -58,12 +59,11 @@ func CmdFile(c *cli.Context) {
 			w.Write([]byte("error"))
 		}
 	})
-	router.PathPrefix("/f").Handler(http.StripPrefix("/f", http.FileServer(http.Dir(root))))
+	router.PathPrefix("/get").Handler(http.StripPrefix("/get", http.FileServer(http.Dir(root))))
 	server := &http.Server{Addr: ":" + strconv.Itoa(port), Handler: router}
 	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 	err := server.ListenAndServe()
 	if err != nil {
 		panic(err)
 	}
-
 }

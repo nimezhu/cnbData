@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	VERSION = "0.0.8"
+	VERSION = "0.0.9"
 	CORS    = "http://genome.compbio.cs.cmu.edu:8080"
 	DIR     = ".cnbData"
 )
