@@ -15,7 +15,6 @@ import (
 func CmdStart(c *cli.Context) error {
 	uri := c.String("input")
 	port := c.Int("port")
-	mode := "w"
 	root := c.String("root")
 	router := mux.NewRouter()
 	if GuessURIType(uri) == "gsheet" {
@@ -40,15 +39,13 @@ func CmdStart(c *cli.Context) error {
 	l := data.NewLoader(idxRoot)
 	l.Plugins["tsv"] = pluginTsv
 	l.Load(uri, router)
-	cors := data.CorsFactory(CORS)
-	router.Use(cors)
+
 	router.Use(cred)
-	//router.Use(strictCorsFactory(CORS))
 	//router.Use(userMiddleware)
 	/* Add User Control
 	 * For Specific Group User Email
 	 */
-	s.Start(mode, port, router)
+	s.StartDataServer(port, router, &corsOptions)
 
 	return nil
 }

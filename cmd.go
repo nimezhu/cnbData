@@ -4,13 +4,23 @@ import (
 	"os"
 	"path"
 
+	"github.com/rs/cors"
 	"github.com/urfave/cli"
 )
 
 const (
 	VERSION = "0.0.9"
-	CORS    = "http://genome.compbio.cs.cmu.edu:8080"
 	DIR     = ".cnbData"
+)
+
+var (
+	CORS        = []string{"http://genome.compbio.cs.cmu.edu:8080", "http://x7.andrew.cmu.edu:8080", "chrome-extension://djcdicpaejhpgncicoglfckiappkoeof", "chrome-extension://gedcoafficobgcagmjpplpnmempkcpfp"}
+	corsOptions = cors.Options{
+		AllowedOrigins:   CORS,
+		AllowCredentials: true,
+		AllowedMethods:   []string{"GET", "POST", "OPTIONS"},
+		AllowedHeaders:   []string{"Authorization"},
+	}
 )
 
 func main() {

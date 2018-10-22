@@ -10,7 +10,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/nimezhu/data"
+	"github.com/rs/cors"
 	"github.com/urfave/cli"
 )
 
@@ -38,8 +38,8 @@ func CmdFile(c *cli.Context) {
 	root := c.String("root")
 	port := c.Int("port")
 	router := mux.NewRouter()
-	cors := data.CorsFactory(CORS)
-	router.Use(cors)
+	//cors := data.CorsFactory(CORS)
+	//router.Use(cors)
 	router.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
 		a, _ := json.Marshal(fileApp)
 		w.Write(a)
@@ -60,7 +60,9 @@ func CmdFile(c *cli.Context) {
 		}
 	})
 	router.PathPrefix("/get").Handler(http.StripPrefix("/get", http.FileServer(http.Dir(root))))
-	server := &http.Server{Addr: ":" + strconv.Itoa(port), Handler: router}
+	hc := cors.New(corsOptions)
+	handler := hc.Handler(router)
+	server := &http.Server{Addr: ":" + strconv.Itoa(port), Handler: handler}
 	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 	err := server.ListenAndServe()
 	if err != nil {
