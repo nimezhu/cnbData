@@ -14,7 +14,7 @@ const (
 )
 
 var (
-	CORS        = []string{"http://genome.compbio.cs.cmu.edu:8080", "http://x7.andrew.cmu.edu:8080", "chrome-extension://djcdicpaejhpgncicoglfckiappkoeof", "chrome-extension://gedcoafficobgcagmjpplpnmempkcpfp"}
+	CORS        = []string{"http://genome.compbio.cs.cmu.edu:8080", "http://x7.andrew.cmu.edu:8080", "chrome-extension://djcdicpaejhpgncicoglfckiappkoeof", "chrome-extension://gedcoafficobgcagmjpplpnmempkcpfp", "https://genome.compbio.cs.cmu.edu"}
 	corsOptions = cors.Options{
 		AllowedOrigins:   CORS,
 		AllowCredentials: true,
