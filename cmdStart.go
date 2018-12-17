@@ -16,6 +16,7 @@ func CmdStart(c *cli.Context) error {
 	uri := c.String("input")
 	port := c.Int("port")
 	root := c.String("root")
+	local := c.Bool("local")
 	router := mux.NewRouter()
 	if GuessURIType(uri) == "gsheet" {
 		dir := path.Join(root, DIR)
@@ -40,12 +41,19 @@ func CmdStart(c *cli.Context) error {
 	l.Plugins["tsv"] = pluginTsv
 	l.Load(uri, router)
 
-	router.Use(cred)
-	//router.Use(userMiddleware)
-	/* Add User Control
-	 * For Specific Group User Email
-	 */
-	s.StartDataServer(port, router, &corsOptions)
+	password = c.String("code")
+	if password != "" {
+		initCache()
+		router.HandleFunc("/signin", Signin)
+		router.HandleFunc("/signout", Signout)
+		router.HandleFunc("/main.html", mainHtml)
+		router.Use(secureMiddleware)
+		s.StartDataServer(port, router, &corsOptions)
+	} else if local {
+		s.StartLocalServer(port, router, &corsOptions)
+	} else {
+		s.StartDataServer(port, router, &corsOptions)
+	}
 
 	return nil
 }
