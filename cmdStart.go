@@ -27,7 +27,6 @@ func CmdStart(c *cli.Context) error {
 			gA.GetClient(ctx, config)
 		}
 	}
-	//cred := c.String("cred")
 	s := box.Box{
 		"CMU Dataome Browser",
 		root,
@@ -40,6 +39,7 @@ func CmdStart(c *cli.Context) error {
 	l := data.NewLoader(idxRoot)
 	l.Plugins["tsv"] = pluginTsv
 	l.Load(uri, router)
+	router.Use(cred)
 
 	password = c.String("code")
 	if password != "" {
