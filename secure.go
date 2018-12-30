@@ -38,8 +38,8 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//Check User Status
-
-	sessionToken := uuid.NewV4().String()
+	uNew, _ := uuid.NewV4()
+	sessionToken := uNew.String()
 	cache[sessionToken] = true
 	http.SetCookie(w, &http.Cookie{
 		Name:    "session_token",
