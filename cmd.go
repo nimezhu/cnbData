@@ -8,12 +8,19 @@ import (
 )
 
 const (
-	VERSION = "0.0.10"
+	VERSION = "0.0.11"
 	DIR     = ".cnbData"
 )
 
 var (
-	CORS        = []string{"http://genome.compbio.cs.cmu.edu:8080", "http://x7.andrew.cmu.edu:8080", "chrome-extension://djcdicpaejhpgncicoglfckiappkoeof", "chrome-extension://gedcoafficobgcagmjpplpnmempkcpfp", "https://genome.compbio.cs.cmu.edu"}
+	CORS = []string{
+		"https://genome.compbio.cs.cmu.edu",
+		"http://genome.compbio.cs.cmu.edu:8080",
+		"chrome-extension://djcdicpaejhpgncicoglfckiappkoeof",
+		/* for development */
+		"http://x7.andrew.cmu.edu:8080",
+		"chrome-extension://gedcoafficobgcagmjpplpnmempkcpfp",
+	}
 	corsOptions = cors.Options{
 		AllowedOrigins:   CORS,
 		AllowCredentials: true,

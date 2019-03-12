@@ -115,45 +115,6 @@ func secureMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
-
-/*
-func CmdSecure(c *cli.Context) error {
-	uri := c.String("input")
-	port := c.Int("port")
-	root := c.String("root")
-	router := mux.NewRouter()
-	if GuessURIType(uri) == "gsheet" {
-		dir := path.Join(root, DIR)
-		ctx := context.Background()
-		config := data.GsheetConfig()
-		gA := asheets.NewGAgent(dir)
-		if !gA.HasCacheFile() {
-			gA.GetClient(ctx, config)
-		}
-	}
-	s := box.Box{
-		"CMU Secure Dataome Browser",
-		root,
-		DIR,
-		VERSION,
-	}
-	s.InitRouter(router)
-	s.InitHome(root)
-	idxRoot := s.InitIdxRoot(root) //???
-	l := data.NewLoader(idxRoot)
-	l.Plugins["tsv"] = pluginTsv
-	l.Load(uri, router)
-	initCache()
-	password = c.String("code")
-	router.HandleFunc("/signin", Signin)
-	router.HandleFunc("/signout", Signout)
-	router.HandleFunc("/main.html", mainHtml)
-
-	router.Use(secureMiddleware)
-	s.StartDataServer(port, router, &corsOptions)
-	return nil
-}
-*/
 func mainHtml(w http.ResponseWriter, r *http.Request) {
 	s := `
 	<html>
