@@ -11,6 +11,8 @@ import (
 	"github.com/urfave/cli"
 )
 
+//TODO Split Web Service and Data Service into Two Port
+// Thus Control the Restart of Data Service???
 func CmdStart(c *cli.Context) error {
 	uri := c.String("input")
 	port := c.Int("port")
@@ -45,10 +47,11 @@ func CmdStart(c *cli.Context) error {
 		l.Load(uri, router)
 	}
 	router.Use(cred)
-	router.PathPrefix("/web").Handler(BindataServer())
+	router.PathPrefix("/web").Handler(BindataServer("app"))
+	addTmplBindata(router, s)
 	//TODO  SignIn and SignOut Session Management in BinData
 	password = c.String("code")
-	if password != "" {
+	if password != "" { //ADD PASSWORD CONTROL , MV IT TO WEB HTML
 		initCache()
 		router.HandleFunc("/signin", Signin)
 		router.HandleFunc("/signout", Signout)
