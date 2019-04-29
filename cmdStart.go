@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"net/http"
 	"path"
 
 	"github.com/gorilla/mux"
@@ -17,6 +16,10 @@ func CmdStart(c *cli.Context) error {
 	port := c.Int("port")
 	root := c.String("root")
 	local := c.Bool("local")
+	customCors := c.String("cors")
+
+	corsOptions := getCors(customCors)
+
 	router := mux.NewRouter()
 	if GuessURIType(uri) == "gsheet" {
 		dir := path.Join(root, DIR)
@@ -28,7 +31,7 @@ func CmdStart(c *cli.Context) error {
 		}
 	}
 	s := box.Box{
-		"CMU Dataome Browser",
+		"Nucleome Data Server",
 		root,
 		DIR,
 		VERSION,
@@ -38,9 +41,12 @@ func CmdStart(c *cli.Context) error {
 	idxRoot := s.InitIdxRoot(root) //???
 	l := data.NewLoader(idxRoot)
 	l.Plugins["tsv"] = pluginTsv
-	l.Load(uri, router)
+	if uri != "" {
+		l.Load(uri, router)
+	}
 	router.Use(cred)
-
+	router.PathPrefix("/web").Handler(BindataServer())
+	//TODO  SignIn and SignOut Session Management in BinData
 	password = c.String("code")
 	if password != "" {
 		initCache()
@@ -58,6 +64,7 @@ func CmdStart(c *cli.Context) error {
 	return nil
 }
 
+/*
 func strictCorsFactory(sites string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -69,3 +76,4 @@ func strictCorsFactory(sites string) func(http.Handler) http.Handler {
 		})
 	}
 }
+*/

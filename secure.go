@@ -121,7 +121,7 @@ func mainHtml(w http.ResponseWriter, r *http.Request) {
 	<head>
 	</head>
 	<body>
-	<h3>CMU Nucleome Data Server </h3>
+	<h3>Nucleome Data Server </h3>
 	<form action="signin">
   Password:<br>
   <input type="text" name="password">

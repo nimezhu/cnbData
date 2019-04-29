@@ -18,10 +18,8 @@ func UserMiddleware(next http.Handler) http.Handler {
 		fmt.Println(s, s1)
 		ue, err := base64.StdEncoding.DecodeString(s1)
 		if err == nil {
-			//TODO
 			fmt.Println("User Middleware :", string(ue))
 		} else {
-			//TODO
 			fmt.Println(err)
 		}
 		next.ServeHTTP(w, r)

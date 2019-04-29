@@ -3,36 +3,18 @@ package main
 import (
 	"os"
 
-	"github.com/rs/cors"
 	"github.com/urfave/cli"
 )
 
 const (
-	VERSION = "0.0.11"
+	VERSION = "0.0.12"
 	DIR     = ".cnbData"
-)
-
-var (
-	CORS = []string{
-		"https://genome.compbio.cs.cmu.edu",
-		"http://genome.compbio.cs.cmu.edu:8080",
-		"chrome-extension://djcdicpaejhpgncicoglfckiappkoeof",
-		/* for development */
-		"http://x7.andrew.cmu.edu:8080",
-		"chrome-extension://gedcoafficobgcagmjpplpnmempkcpfp",
-	}
-	corsOptions = cors.Options{
-		AllowedOrigins:   CORS,
-		AllowCredentials: true,
-		AllowedMethods:   []string{"GET", "POST", "OPTIONS"},
-		AllowedHeaders:   []string{"Authorization"},
-	}
 )
 
 func main() {
 	app := cli.NewApp()
 	app.Version = VERSION
-	app.Name = "cnb dataserver tools"
+	app.Name = "Nucleome Data Server Tools"
 	app.Usage = "cnbData start -i [[google_sheet_id OR xls file]] -p [[port]]"
 	app.EnableBashCompletion = true //TODO
 	app.Flags = []cli.Flag{
@@ -56,7 +38,7 @@ func main() {
 				cli.IntFlag{
 					Name:  "port,p",
 					Usage: "data server port",
-					Value: 8080,
+					Value: 8611,
 				},
 				cli.StringFlag{
 					Name:  "root,r",
@@ -70,6 +52,11 @@ func main() {
 				cli.StringFlag{
 					Name:  "code,c",
 					Usage: "set password for server, override -l",
+					Value: "",
+				},
+				cli.StringFlag{
+					Name:  "cors",
+					Usage: "add Customized CORS access",
 					Value: "",
 				},
 			},
@@ -87,7 +74,12 @@ func main() {
 				cli.IntFlag{
 					Name:  "port,p",
 					Usage: "data server port",
-					Value: 8080,
+					Value: 8611,
+				},
+				cli.StringFlag{
+					Name:  "cors",
+					Usage: "add Customized CORS access",
+					Value: "",
 				},
 			},
 		},

@@ -15,8 +15,8 @@ import (
 )
 
 var fileApp = App{
-	"CMU Fileome Server",
-	"0.0.1",
+	"Nucleome File Server",
+	VERSION,
 }
 
 func ls(dir string) []os.FileInfo {
@@ -27,7 +27,7 @@ func ls(dir string) []os.FileInfo {
 	return files
 }
 
-/* CNB
+/* Nucleome Browser
 	File Server for Simple 3D Structure or Other files
   file server with meta.tsv for directory (alias)
 	easily manage files with or without google sheets
@@ -40,6 +40,9 @@ func CmdFile(c *cli.Context) {
 	router := mux.NewRouter()
 	//cors := data.CorsFactory(CORS)
 	//router.Use(cors)
+	customCors := c.String("cors")
+	corsOptions := getCors(customCors)
+
 	router.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
 		a, _ := json.Marshal(fileApp)
 		w.Write(a)
