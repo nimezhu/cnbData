@@ -1,6 +1,6 @@
 package main
 
-//go:generate go-bindata-assetfs -pkg main app/...
+//go:generate go-bindata-assetfs -pkg main app/... client_secret.json
 import (
 	"net/http"
 )

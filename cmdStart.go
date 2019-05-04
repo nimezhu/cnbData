@@ -26,7 +26,7 @@ func CmdStart(c *cli.Context) error {
 	if GuessURIType(uri) == "gsheet" {
 		dir := path.Join(root, DIR)
 		ctx := context.Background()
-		config := data.GsheetConfig()
+		config := GsheetConfig()
 		gA := asheets.NewGAgent(dir)
 		if !gA.HasCacheFile() {
 			gA.GetClient(ctx, config)

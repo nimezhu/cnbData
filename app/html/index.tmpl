@@ -5,7 +5,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Nucleome Data Server</title>
-        {{template "reactlib"}}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     </head>
     <body>
         <div id="root">
@@ -16,9 +17,7 @@
                 app.name = {{.Appname}}
                 console.log("app", app)
             </script>
-        <script type="text/babel" src="../web/index.jsx"></script>
-        <script>
-        </script>
+        <script src="../web/bundle.js"></script>
     </body>
 </html>
 {{end}}
