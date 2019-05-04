@@ -39,6 +39,10 @@ func CmdFile(c *cli.Context) {
 	port := c.Int("port")
 	router := mux.NewRouter()
 	//cors := data.CorsFactory(CORS)
+	customCors := c.String("cors")
+
+	corsOptions := getCors(customCors)
+
 	//router.Use(cors)
 	router.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
 		a, _ := json.Marshal(fileApp)

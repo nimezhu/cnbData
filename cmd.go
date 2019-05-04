@@ -8,16 +8,16 @@ import (
 )
 
 const (
-	VERSION = "0.0.11"
+	VERSION = "0.0.12"
 	DIR     = ".cnbData"
 )
 
+/*
 var (
 	CORS = []string{
 		"https://genome.compbio.cs.cmu.edu",
 		"http://genome.compbio.cs.cmu.edu:8080",
 		"chrome-extension://djcdicpaejhpgncicoglfckiappkoeof",
-		/* for development */
 		"http://x7.andrew.cmu.edu:8080",
 		"chrome-extension://gedcoafficobgcagmjpplpnmempkcpfp",
 	}
@@ -28,6 +28,7 @@ var (
 		AllowedHeaders:   []string{"Authorization"},
 	}
 )
+*/
 
 func main() {
 	app := cli.NewApp()
