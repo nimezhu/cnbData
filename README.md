@@ -3,9 +3,10 @@
 ## Add Custom Tracks to CNB
 
 Download executable binary file
-- [Linux Version](https://vis.nucleome.org/static/dist/current/linux/cnbData)
-- [Windows Version](https://vis.nucleome.org/static/dist/current/win64/cnbData.exe)
-- [Mac OS version](https://vis.nucleome.org/static/dist/current/mac/cnbData)
+
+[![Linux64](https://img.shields.io/badge/binary-linux-green.svg?style=flat)](https://vis.nucleome.org/static/dist/current/linux/cnbData)
+[![Windows](https://img.shields.io/badge/binary-win-blue.svg?style=flat)](https://vis.nucleome.org/static/dist/current/win64/cnbData.exe)
+[![MacOS](https://img.shields.io/badge/binary-macos-yellow.svg?style=flat)](https://vis.nucleome.org/static/dist/current/mac/cnbData)
 
 
 Start a Data Server
