@@ -18,15 +18,15 @@ Please download executable binary file
 [![Windows](https://img.shields.io/badge/binary-win-blue.svg?style=flat)](https://vis.nucleome.org/static/dist/current/win64/cnbData.exe)
 [![MacOS](https://img.shields.io/badge/binary-macos-yellow.svg?style=flat)](https://vis.nucleome.org/static/dist/current/mac/cnbData)
 
-And change the mode of this file into excutable.
+And change the mode of this file into executable.
 
-In Linux or Mac OS, this can be done in a terminal, using command *chmod*.
+In Linux or Mac OS, this can be done in a terminal, using command `chmod`.
 
 ```shell
 chmod 755 cnbData
 ```
 
-Then,you can run cnbData as a command line tool in terminal.
+Then,you can run `cnbData` as a command line tool in terminal.
 
 ## Quick Start 
 
@@ -35,32 +35,34 @@ Start a Data Server
 ```shell
 ./cnbData start -i [google sheet id or excel file] -p [port default:8611]
 ```
-[Example Input: Google sheet](https://docs.google.com/spreadsheets/d/1nJwOozr4EL4gnx37hzF2Jmv-HPsgFMA9jN-lbUj1GvM/edit#gid=1744383077)
-
-
-> The google sheet id is part of the url in your google sheet webpage.
-> ![Google Sheet ID Demo](https://nbrowser.github.io/image/google_sheet_id_demo.png)
 
 The track configuration input for cnbData could be a google sheet or a excel file.
 
+### Start with Google Sheet
+[Example Input: Google sheet](https://docs.google.com/spreadsheets/d/1nJwOozr4EL4gnx37hzF2Jmv-HPsgFMA9jN-lbUj1GvM/edit#gid=1744383077)
 
-Two reserved sheets is needed for start cnb data browser.  One is “Config”,  which store the configuration variable values, currently, “root” variable is the only variable needed for cnbData. It stores the root path for you store all data. It is designed for user conveniently migrating data between servers. The other sheet is “Index”, which stores the configuration information of all other sheets which are needed to use in cnbData server. The sheet titles which are not in Index sheet will be ignored by cnbData.
 
+The **google sheet id** is part of the url in your google sheet webpage. It is in blue background in the following demostration image.
+![Google Sheet ID Demo](https://nbrowser.github.io/image/google_sheet_id_demo.png)
+
+When **first time** use `cnbData` with google sheet, it will prompt a link to ask for authorize permission, copy this link to browser and get back a token, then copy and paste this token to command terminal, a credential token will be stored in `$HOME/.cnbData/credentials/gsheet.json`.
+
+
+
+### Input Google Sheet or Xlsx Format
+
+Two reserved sheets are required for start this data server.  
+
+One is “Config”,  which store the configuration variable values. Currently, `root` variable is the only variable needed for cnbData. It stores the root path for you store all track data files. It is designed for user conveniently migrating data between servers. All the URI in other sheets will be the relative path to `root` if their URI are not start with `http` or `https`.
+
+
+The other sheet is “Index”, which stores the configuration information of all other sheets which are needed to use in cnbData server. The sheet titles which are not in Index sheet will be ignored by cnbData.
 
 For track format data sheet, if using four columns, the columns name should be “shortLabel” , “uri,metaLink,longLabel”, and the corresponding column header such as A,B et al. should put into the 4th and 5th column.
 
  
-
-If using two columns, the column name could be any string user defined. Just filled in the column index into the fourth and the fifth column accordingly.
-
-
-For those entries which Id starts with “#” will be ignored when loading.
-
-
-When first time use cnbData with google sheet, it will prompt a link to ask for authorize permission, copy this link to browser and get back a token, then copy and paste this token to command terminal, a credential token will be stored in ~/.cnbData/credentials/gsheet.json.
-
-
-Data file uris can be web url or local file relative path to “root” in Config sheet. Currently,  in type “track” cnbData support three format self indexed file, bigwig format, bigbed format and .hic format.
+If using two columns, the column name could be any string user defined. Just filled in the column index into the fourth and the fifth column accordingly. In sheet "Index", those entries which Id starts with “#” will be ignored when loading.
+Column "Type" is a reserve entry for future data server. Currently, just use "track" in this column. It support bigWig, bigBed and .hic.
 
 
 The localhost http://127.0.0.1:8611 is one of default server in CNB. If user starts a data server in localhost and the port is default 8611, user doesn’t need to configure the server list. Just reload server content or add new genome browser panel after the local server start, the custom data will show in this genome browser config panel.
