@@ -57,13 +57,20 @@ One is “Config”,  which store the configuration variable values. Currently, 
 ![Sheet Config Example](https://nbrowser.github.io/image/sheetConfig.png)
 
 The other sheet is “Index”, which stores the configuration information of all other sheets which are needed to use in cnbData server. The sheet titles which are not in Index sheet will be ignored by cnbData.
+
 ![Sheet Index Example](https://nbrowser.github.io/image/sheetIndex.png)
 
 For track format data sheet, if using four columns, the columns name should be “shortLabel” , “uri,metaLink,longLabel”, and the corresponding column header such as A,B et al. should put into the 4th and 5th column.
 
+
  
 If using two columns, the column name could be any string user defined. Just filled in the column index into the fourth and the fifth column accordingly. In sheet "Index", those entries which Id starts with “#” will be ignored when loading.
 Column "Type" is a reserve entry for future data server. Currently, just use "track" in this column. It support bigWig, bigBed and .hic.
+#### Simple Name and URI
+![Sheet Data Example](https://nbrowser.github.io/image/sheetSimpleData.png)
+
+#### With Long Label and Meta Link
+![Sheet Data Example](https://nbrowser.github.io/image/sheetData4.png)
 
 
 The localhost http://127.0.0.1:8611 is one of default server in CNB. If user starts a data server in localhost and the port is default 8611, user doesn’t need to configure the server list. Just reload server content or add new genome browser panel after the local server start, the custom data will show in this genome browser config panel.
