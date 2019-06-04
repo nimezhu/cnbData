@@ -54,9 +54,10 @@ When **first time** use `cnbData` with google sheet, it will prompt a link to as
 Two reserved sheets are required for start this data server.  
 
 One is “Config”,  which store the configuration variable values. Currently, `root` variable is the only variable needed for cnbData. It stores the root path for you store all track data files. It is designed for user conveniently migrating data between servers. All the URI in other sheets will be the relative path to `root` if their URI are not start with `http` or `https`.
-
+![Sheet Config Example](https://nbrowser.github.io/image/sheetConfig.png)
 
 The other sheet is “Index”, which stores the configuration information of all other sheets which are needed to use in cnbData server. The sheet titles which are not in Index sheet will be ignored by cnbData.
+![Sheet Index Example](https://nbrowser.github.io/image/sheetIndex.png)
 
 For track format data sheet, if using four columns, the columns name should be “shortLabel” , “uri,metaLink,longLabel”, and the corresponding column header such as A,B et al. should put into the 4th and 5th column.
 
