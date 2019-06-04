@@ -38,8 +38,8 @@ Start a Data Server
 [Example Input: Google sheet](https://docs.google.com/spreadsheets/d/1nJwOozr4EL4gnx37hzF2Jmv-HPsgFMA9jN-lbUj1GvM/edit#gid=1744383077)
 
 
-The google sheet id is part of the url in your google sheet webpage.
-![Google Sheet ID Demo](https://vis.nucleome.org/static/img/google_sheet_id_demo.png)
+> The google sheet id is part of the url in your google sheet webpage.
+> ![Google Sheet ID Demo](https://nbrowser.github.io/image/google_sheet_id_demo.png)
 
 The track configuration input for cnbData could be a google sheet or a excel file.
 
