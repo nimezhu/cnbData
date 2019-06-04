@@ -1,21 +1,34 @@
-# NBrowser Data Server 
+# Nucleome Browser Data Server 
 
-## Add Custom Tracks to CNB
+## Introduction
+[*Nucleome Browser* Data Server](http://v.nucleome.org/data/server) is a component for [*Nucleome Browser* Web Application](https://vis.nucleome.org). It is a software for user to host their own [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx) format data. When user start a data server, their data can bed integrated and rendered in [*Nucleome Browser* Web Application](https://vis.nucleome.org) with public available data.
 
-Download executable binary file
+The input for this software is a Google Sheet or a Excel file which has the information such as file location, short label, long label and weblink of future description of bigWig, bigBed and hic tracks. These data files can be either located in local drive or just a weblink.
+
+
+## Instrall
+This software is implemented in [GoLang](https://golang.org/) and works in Linux, Windows and Mac OS without installation. 
+Please download executable binary file
 
 [![Linux64](https://img.shields.io/badge/binary-linux-green.svg?style=flat)](https://vis.nucleome.org/static/dist/current/linux/cnbData)
 [![Windows](https://img.shields.io/badge/binary-win-blue.svg?style=flat)](https://vis.nucleome.org/static/dist/current/win64/cnbData.exe)
 [![MacOS](https://img.shields.io/badge/binary-macos-yellow.svg?style=flat)](https://vis.nucleome.org/static/dist/current/mac/cnbData)
 
+And change the mode of this file into excutable.
+In Linux or Mac OS, this can be done in a terminal, using command chmod.
+```shell
+chmod 755 cnbData
+```
+
+## Quick Start 
 
 Start a Data Server
 
 ```shell
 ./cnbData start -i [google sheet id or excel file] -p [port default:8611]
 ```
-
 [Example Input: Google sheet](https://docs.google.com/spreadsheets/d/1nJwOozr4EL4gnx37hzF2Jmv-HPsgFMA9jN-lbUj1GvM/edit#gid=1744383077)
+
 
 The google sheet id is part of the url in your google sheet webpage.
 
