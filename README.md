@@ -1,13 +1,17 @@
 # Nucleome Browser Data Server 
 
 ## Introduction
-[*Nucleome Browser* Data Server](http://v.nucleome.org/data/server) is a component for [*Nucleome Browser* Web Application](https://vis.nucleome.org). It is a software for user to host their own [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx) format data. When user start a data server, their data can bed integrated and rendered in [*Nucleome Browser* Web Application](https://vis.nucleome.org) with public available data.
 
-The input for this software is a Google Sheet or a Excel file which has the information such as file location, short label, long label and weblink of future description of bigWig, bigBed and hic tracks. These data files can be either located in local drive or just a weblink.
+[*Nucleome Browser Data Server*](http://v.nucleome.org/data/server) is a component for [*Nucleome Browser Platform*](http://v.nucleome.org/home). It is a software for user to host their own [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx) format data. When user start a data server in their local machine, their private data can be integrated with public available data which are hosted by other public data servers and rendered in [*Nucleome Browser Progressive Web Application*](https://vis.nucleome.org). 
+
+User's private data are not accessible by other users or web application administrator if their data server is in localhost.
+
+The input for this software is a Google Sheet or a Excel file which has the information such as file location(URI), short label(shortLabel), long label(longLabel) and weblink(metaLink) of future description of tracks. These data files can be either located in local drive or just a weblink.
 
 
-## Instrall
+## Install
 This software is implemented in [GoLang](https://golang.org/) and works in Linux, Windows and Mac OS without installation. 
+
 Please download executable binary file
 
 [![Linux64](https://img.shields.io/badge/binary-linux-green.svg?style=flat)](https://vis.nucleome.org/static/dist/current/linux/cnbData)
@@ -15,10 +19,14 @@ Please download executable binary file
 [![MacOS](https://img.shields.io/badge/binary-macos-yellow.svg?style=flat)](https://vis.nucleome.org/static/dist/current/mac/cnbData)
 
 And change the mode of this file into excutable.
-In Linux or Mac OS, this can be done in a terminal, using command chmod.
+
+In Linux or Mac OS, this can be done in a terminal, using command *chmod*.
+
 ```shell
 chmod 755 cnbData
 ```
+
+Then,you can run cnbData as a command line tool in terminal.
 
 ## Quick Start 
 
@@ -31,7 +39,7 @@ Start a Data Server
 
 
 The google sheet id is part of the url in your google sheet webpage.
-
+![Google Sheet ID Demo](https://vis.nucleome.org/static/img/google_sheet_id_demo.png)
 
 The track configuration input for cnbData could be a google sheet or a excel file.
 
