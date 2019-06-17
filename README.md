@@ -78,6 +78,7 @@ The localhost http://127.0.0.1:8611 is one of default servers in CNB. If user st
 
 If Data server is in other port or other web servers instead of localhost, user need to add the server into server lists. Open the CNB main website in your chrome browser. If user don't have a genome browser panel, please add a genome browser panel, the add button is in submenu of panels in the menu bar. Then, in this genome browser, then Click Config tracks → Click Config Servers → Input Server URI and any Id into table → Click Refresh Button to reload.
 
+
 ![Config Servers](https://nbrowser.github.io/image/configServers.png)
 
 If user open a new genome browser panel , it will loading servers as last configuration. Servers configuration is stored as settings for this panel, if user duplicate this panel, the servers setting will be automatically copied too.
