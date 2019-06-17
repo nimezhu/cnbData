@@ -73,9 +73,10 @@ Column "Type" is a reserve entry for future data server. Currently, just use "tr
 ![Sheet Data Example](https://nbrowser.github.io/image/sheetData4.png)
 
 
-The localhost http://127.0.0.1:8611 is one of default server in CNB. If user starts a data server in localhost and the port is default 8611, user doesn’t need to configure the server list. Just reload server content or add new genome browser panel after the local server start, the custom data will show in this genome browser config panel.
+The localhost http://127.0.0.1:8611 is one of default servers in CNB. If user starts a data server in localhost and the port is default 8611, user doesn’t need to configure the server list. Just reload server content or add new genome browser panel after the local server start, the custom data will show in this genome browser config panel.
 
 
-If Data server is in other port or other web address instead of localhost, user need to add the server into server lists. Open the CNB main website in your chrome browser. Add a genome panel.  Then Click Config tracks → Click Config Servers → Input Server URI and any Id into table → Click Refresh Button to reload.
+If Data server is in other port or other web servers instead of localhost, user need to add the server into server lists. Open the CNB main website in your chrome browser. If user don't have a genome browser panel, please add a genome browser panel, the add button is in submenu of panels in the menu bar. Then, in this genome browser, then Click Config tracks → Click Config Servers → Input Server URI and any Id into table → Click Refresh Button to reload.
+![Config Servers](https://nbrowser.github.io/image/configServers.png)
 
-The last time loading server configure will be saved into user’s application variable, then next time open a new genome panel user doesn’t need configure the server list.
+If user open a new genome browser panel , it will loading servers as last configuration. Servers configuration is stored as settings for this panel, if user duplicate this panel, the servers setting will be automatically copied too.
