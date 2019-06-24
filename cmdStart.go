@@ -32,12 +32,7 @@ func CmdStart(c *cli.Context) error {
 			gA.GetClient(ctx, config)
 		}
 	}
-	s := box.Box{
-		"Nucleome Data Server",
-		root,
-		DIR,
-		VERSION,
-	}
+	s := box.NewBox("Nucleome Data Server", root, DIR, VERSION)
 	s.InitRouter(router)
 	s.InitHome(root)
 	idxRoot := s.InitIdxRoot(root) //???

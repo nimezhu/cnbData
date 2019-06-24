@@ -16,7 +16,7 @@ import (
 
 var fileApp = App{
 	"CMU Fileome Server",
-	"0.0.1",
+	"0.0.2",
 }
 
 func ls(dir string) []os.FileInfo {
