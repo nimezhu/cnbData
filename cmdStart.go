@@ -8,11 +8,10 @@ import (
 	"github.com/nimezhu/asheets"
 	"github.com/nimezhu/box"
 	"github.com/nimezhu/data"
+	"github.com/nimezhu/nbdata"
 	"github.com/urfave/cli"
 )
 
-//TODO Split Web Service and Data Service into Two Port
-// Thus Control the Restart of Data Service???
 func CmdStart(c *cli.Context) error {
 	uri := c.String("input")
 	port := c.Int("port")
@@ -20,13 +19,13 @@ func CmdStart(c *cli.Context) error {
 	local := c.Bool("local")
 	customCors := c.String("cors")
 
-	corsOptions := getCors(customCors)
+	corsOptions := nbdata.GetCors(customCors)
 
 	router := mux.NewRouter()
-	if GuessURIType(uri) == "gsheet" {
+	if nbdata.GuessURIType(uri) == "gsheet" {
 		dir := path.Join(root, DIR)
 		ctx := context.Background()
-		config := GsheetConfig()
+		config := nbdata.GsheetConfig()
 		gA := asheets.NewGAgent(dir)
 		if !gA.HasCacheFile() {
 			gA.GetClient(ctx, config)
@@ -37,41 +36,26 @@ func CmdStart(c *cli.Context) error {
 	s.InitHome(root)
 	idxRoot := s.InitIdxRoot(root) //???
 	l := data.NewLoader(idxRoot)
-	l.Plugins["tsv"] = pluginTsv
+	l.Plugins["tsv"] = nbdata.PluginTsv
 	if uri != "" {
 		l.Load(uri, router)
 	}
-	router.Use(cred)
+	router.Use(nbdata.Cred)
 	//router.PathPrefix("/web").Handler(BindataServer("app"))
 	//addTmplBindata(router, s)
 	//TODO  SignIn and SignOut Session Management in BinData
-	password = c.String("code")
+	password := c.String("code")
 	if password != "" { //ADD PASSWORD CONTROL , MV IT TO WEB HTML
-		initCache()
-		router.HandleFunc("/signin", Signin)
-		router.HandleFunc("/signout", Signout)
-		router.HandleFunc("/main.html", mainHtml)
-		router.Use(secureMiddleware)
+		nbdata.InitCache(password)
+		router.HandleFunc("/signin", nbdata.Signin)
+		router.HandleFunc("/signout", nbdata.Signout)
+		router.HandleFunc("/main.html", nbdata.MainHtml)
+		router.Use(nbdata.SecureMiddleware)
 		s.StartDataServer(port, router, &corsOptions)
 	} else if local {
 		s.StartLocalServer(port, router, &corsOptions)
 	} else {
 		s.StartDataServer(port, router, &corsOptions)
 	}
-
 	return nil
 }
-
-/*
-func strictCorsFactory(sites string) func(http.Handler) http.Handler {
-	return func(next http.Handler) http.Handler {
-		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			if r.Header.Get("Origin") == sites {
-				next.ServeHTTP(w, r)
-			} else {
-				w.Write([]byte("not authorized"))
-			}
-		})
-	}
-}
-*/

@@ -10,11 +10,12 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/nimezhu/nbdata"
 	"github.com/rs/cors"
 	"github.com/urfave/cli"
 )
 
-var fileApp = App{
+var fileApp = nbdata.App{
 	"CMU Fileome Server",
 	"0.0.2",
 }
@@ -41,7 +42,7 @@ func CmdFile(c *cli.Context) {
 	//cors := data.CorsFactory(CORS)
 	customCors := c.String("cors")
 
-	corsOptions := getCors(customCors)
+	corsOptions := nbdata.GetCors(customCors)
 
 	//router.Use(cors)
 	router.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
