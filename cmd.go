@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 
+	"github.com/nimezhu/nbdata"
 	"github.com/urfave/cli"
 )
 
@@ -23,7 +24,7 @@ func main() {
 			Usage: "Show more output",
 		},
 	}
-	home := os.Getenv("HOME")
+	home := nbdata.UserHomeDir()
 	app.Commands = []cli.Command{
 		{
 			Name:   "start",

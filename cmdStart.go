@@ -41,9 +41,6 @@ func CmdStart(c *cli.Context) error {
 		l.Load(uri, router)
 	}
 	router.Use(nbdata.Cred)
-	//router.PathPrefix("/web").Handler(BindataServer("app"))
-	//addTmplBindata(router, s)
-	//TODO  SignIn and SignOut Session Management in BinData
 	password := c.String("code")
 	if password != "" { //ADD PASSWORD CONTROL , MV IT TO WEB HTML
 		nbdata.InitCache(password)
