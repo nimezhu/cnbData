@@ -2,7 +2,10 @@
 
 ## Introduction
 
-[*Nucleome Browser Data Server*](http://v.nucleome.org/data/server) is a component for [*Nucleome Browser Platform*](http://v.nucleome.org/home). It is a software for user to host their own [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx) format data. When user start a data server in their local machine, their private data can be integrated with public available data which are hosted by other public data servers and rendered in [*Nucleome Browser Progressive Web Application*](https://vis.nucleome.org). 
+[*Nucleome Browser Data Server*](http://v.nucleome.org/data/server) is a component for [*Nucleome Browser Platform*](http://v.nucleome.org/home). 
+
+
+It is a software for user to host their own [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx) format data. When user start a data server in their local machine, their private data can be integrated with public available data which are hosted by other public data servers and rendered in [*Nucleome Browser Progressive Web Application*](https://vis.nucleome.org). 
 
 User's private data are not accessible by other users or web application administrator if their data server is in localhost.
 
@@ -26,6 +29,9 @@ In Linux or Mac OS, this can be done in a terminal, using command `chmod`.
 chmod 755 cnbData
 ```
 
+If you are using Windows and not familiar with runnning command line tool in Windows, please read [this article](https://www.computerhope.com/issues/chusedos.htm) first.
+We are also providing GUI data server in Windows. It is still in developing, here's the [GitHub Link](https://github.com/nimezhu/nbwin)
+
 Then,you can run `cnbData` as a command line tool in terminal.
 
 ## Quick Start 
@@ -40,12 +46,22 @@ The track configuration input for cnbData could be a google sheet or a excel fil
 
 ### Start with Google Sheet
 [Example Input: Google sheet](https://docs.google.com/spreadsheets/d/1nJwOozr4EL4gnx37hzF2Jmv-HPsgFMA9jN-lbUj1GvM/edit#gid=1744383077)
+For easy start, you could download it as an excel file such as `cnb.xlsx`, and run the command below.
+`cnbData start -i cnb.xlsx`
 
 
-The **google sheet id** is part of the url in your google sheet webpage. It is in blue background in the following demostration image.
+You can also use **Google Sheet ID** as input directly like this.
+`cnbData start -i 1nJwOozr4EL4gnx37hzF2Jmv-HPsgFMA9jN-lbUj1GvM`
+
+The **Google Sheet ID** is part of the url in your google sheet webpage. It is in blue background in the following demostration image.
 ![Google Sheet ID Demo](https://nbrowser.github.io/image/google_sheet_id_demo.png)
 
-When **first time** use `cnbData` with google sheet, it will prompt a link to ask for authorize permission, copy this link to browser and get back a token, then copy and paste this token to command terminal, a credential token will be stored in `$HOME/.cnbData/credentials/gsheet.json`.
+When **first time** use `cnbData` with google sheet, it will prompt a link to ask for authorize permission, copy this link to browser and get back a token, then copy and paste this token to command terminal, a credential token will be stored in `[Your Home Dir]/.cnbData/credentials/gsheet.json`.
+
+
+
+
+
 
 
 
