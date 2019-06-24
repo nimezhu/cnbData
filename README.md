@@ -46,15 +46,17 @@ The track configuration input for cnbData could be a google sheet or a excel fil
 
 ### Start with Google Sheet
 [Example Input: Google sheet](https://docs.google.com/spreadsheets/d/1nJwOozr4EL4gnx37hzF2Jmv-HPsgFMA9jN-lbUj1GvM/edit#gid=1744383077)
-For easy start, you could download it as an excel file such as `cnb.xlsx`, and run the command below.
+
+For easy start, you could download it as an excel file and named it as `cnb.xlsx`.
+Then you can run the command below.
+
 `cnbData start -i cnb.xlsx`
 
-
-You can also use **Google Sheet ID** as input directly like this.
+You can also skip downloading and use **Google Sheet ID** directly like this.
 `cnbData start -i 1nJwOozr4EL4gnx37hzF2Jmv-HPsgFMA9jN-lbUj1GvM`
 
-The **Google Sheet ID** is part of the url in your google sheet webpage. It is in blue background in the following demostration image.
-![Google Sheet ID Demo](https://nbrowser.github.io/image/google_sheet_id_demo.png)
+> The **Google Sheet ID** is part of the url in your google sheet webpage. It is in blue background in the following demostration image.
+> ![Google Sheet ID Demo](https://nbrowser.github.io/image/google_sheet_id_demo.png)
 
 When **first time** use `cnbData` with google sheet, it will prompt a link to ask for authorize permission, copy this link to browser and get back a token, then copy and paste this token to command terminal, a credential token will be stored in `[Your Home Dir]/.cnbData/credentials/gsheet.json`.
 
