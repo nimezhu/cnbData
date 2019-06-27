@@ -1,13 +1,16 @@
-# Nucleome Browser Data Server 
+# Nucleome Data Server 
 
 ## Introduction
 
-[*Nucleome Browser Data Server*](http://v.nucleome.org/data/server) is a component for [*Nucleome Browser Platform*](http://v.nucleome.org/home). 
+[*Nucleome Data Server*](http://v.nucleome.org/data/server) is a command line tool for [*Nucleome Platform*](http://v.nucleome.org/home). It is designed for users to host their data in servers. 
 
+If you want to host your data in you local machine. Please refer to our Graphic User Interface tool [Nucleome Data](https://github.com/nimezhu/ndata).
 
-It is a software for user to host their own [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx) format data. When user start a data server in their local machine, their private data can be integrated with public available data which are hosted by other public data servers and rendered in [*Nucleome Browser Progressive Web Application*](https://vis.nucleome.org). 
+It is a software for user to host their own [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx) format data. 
 
-User's private data are not accessible by other users or web application administrator if their data server is in localhost.
+When user start a data server in their local machine, their private data can be integrated with public available data which are hosted by other public data servers and rendered in [*Nucleome Browser*](https://vis.nucleome.org). 
+
+User's private data are not accessible by other users or web application administrator if their data server is in localhost or local network.
 
 The input for this software is a Google Sheet or a Excel file which has the information such as file location(URI), short label(shortLabel), long label(longLabel) and weblink(metaLink) of future description of tracks. These data files can be either located in local drive or just a weblink.
 
@@ -29,10 +32,10 @@ In Linux or Mac OS, this can be done in a terminal, using command `chmod`.
 chmod 755 cnbData
 ```
 
-If you are using Windows and not familiar with runnning command line tool in Windows, please read [this article](https://www.computerhope.com/issues/chusedos.htm) first.
-We are also providing GUI data server in Windows. It is still in developing, here's the [GitHub Link](https://github.com/nimezhu/nbwin)
+If you are using Windows and not familiar with runnning command line tool in Windows, please read [this article](https://www.computerhope.com/issues/chusedos.htm) first. Then,you can run `cnbData` as a command line tool in terminal.
 
-Then,you can run `cnbData` as a command line tool in terminal.
+
+
 
 ## Quick Start 
 
