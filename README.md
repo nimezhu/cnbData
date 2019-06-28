@@ -12,8 +12,13 @@ The input for this software is an Excel file or a Google Sheet which has the inf
 
 
 ## Install
-This software is implemented in [GoLang](https://golang.org/) and works in Linux, Windows and Mac OS without installation. 
 
+This software is implemented in [GoLang](https://golang.org/).
+User can either download the binary exectuable files we compiled, or compile this source code using GoLang command.
+
+### Binary Executable Files
+ 
+Download Binary Exectuable Files in Linux, Windows and Mac OS without installation.
 Please download executable binary file
 
 - [Linux](https://vis.nucleome.org/static/dist/current/linux/cnbData)
@@ -28,10 +33,10 @@ In Linux or Mac OS, this can be done in a terminal, using command `chmod`.
 chmod 755 cnbData
 ```
 
-If you are using Windows and not familiar with runnning command line tool in Windows, please read [this article](https://www.computerhope.com/issues/chusedos.htm) first. Then,you can run `cnbData` as a command line tool in terminal.
-
-
-
+### Compile Source Code
+```
+go get -u github.com/nimezhu/cnbdata
+```
 
 ## Quick Start 
 
@@ -45,6 +50,8 @@ in Windows
 ```shell
 cnbData.exe start -i [google sheet id or excel file] -p [port default:8611]
 ```
+
+If you are using Windows and not familiar with runnning command line tool in Windows, please read [this article](https://www.computerhope.com/issues/chusedos.htm) first. Then,you can run `cnbData` as a command line tool in terminal.
 
 The track configuration input for cnbData could be an Excel file or Google Sheet ID.
 
