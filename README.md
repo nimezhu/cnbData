@@ -2,17 +2,15 @@
 
 ## Introduction
 
-[*Nucleome Server*](http://v.nucleome.org/data/server) is a command line tool for [*Nucleome Platform*](http://v.nucleome.org/home). It is designed for users to host their data in servers. 
+[*Nucleome Server*](http://v.nucleome.org/data/server) is a command line tool for [*Nucleome Platform*](http://v.nucleome.org/home). It is designed for users to host their data, such as  [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx), in servers. 
 
-If you want to host your data in you local machine. Please refer to our Graphic User Interface tool [Nucleome Data](https://github.com/nimezhu/ndata).
+If you want to add your data from local personal computer, instead of servers. Please use our Graphic User Interface tool [Nucleome Data](https://github.com/nimezhu/ndata).
 
-It is a software for user to host their own [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx) format data. 
-
-When user start a data server in their local machine, their private data can be integrated with public available data which are hosted by other public data servers and rendered in [*Nucleome Browser*](https://vis.nucleome.org). 
+When user start a data server, their private data can be integrated with public available data which are hosted by other public data servers and rendered in [*Nucleome Browser*](https://vis.nucleome.org). 
 
 User's private data are not accessible by other users or web application administrator if their data server is in localhost or local network.
 
-The input for this software is a Google Sheet or a Excel file which has the information such as file location(URI), short label(shortLabel), long label(longLabel) and weblink(metaLink) of future description of tracks. These data files can be either located in local drive or just a weblink.
+The input for this software is an Excel file or a Google Sheet which has the information such as file location(URI), short label(shortLabel), long label(longLabel) and weblink(metaLink) of future description of tracks. These data files can be either located in local drive or just a weblink.
 
 
 ## Install
