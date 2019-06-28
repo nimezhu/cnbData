@@ -1,8 +1,8 @@
-# Nucleome Data Server 
+# Nucleome Server 
 
 ## Introduction
 
-[*Nucleome Data Server*](http://v.nucleome.org/data/server) is a command line tool for [*Nucleome Platform*](http://v.nucleome.org/home). It is designed for users to host their data in servers. 
+[*Nucleome Server*](http://v.nucleome.org/data/server) is a command line tool for [*Nucleome Platform*](http://v.nucleome.org/home). It is designed for users to host their data in servers. 
 
 If you want to host your data in you local machine. Please refer to our Graphic User Interface tool [Nucleome Data](https://github.com/nimezhu/ndata).
 
