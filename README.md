@@ -4,7 +4,7 @@
 
 [*Nucleome Server*](http://v.nucleome.org/data/server) is a command line tool for [*Nucleome Platform*](http://v.nucleome.org/home). It is designed for users to start a data service to host their multi scale data, such as  [bigWig](https://genome.ucsc.edu/goldenpath/help/bigWig.html), [bigBed](https://genome.ucsc.edu/goldenpath/help/bigBed.html) and [.hic](https://github.com/aidenlab/Juicebox/blob/master/HiC_format_v8.docx), in servers. Through a data service, these data can be browsed in [*Nucleome Browser*](https://vis.nucleome.org). 
 
-If you want to browse your data from local personal computer, instead of servers. Please use our Graphic User Interface tool [Nucleome Data](https://github.com/nimezhu/ndata). However, if you are familiar with commnand line tools, you can also use this program in your personal computer too.
+If you want to browse your data from local personal computer, instead of servers. Please use our Graphic User Interface tool [*Nucleome Data*](https://github.com/nimezhu/ndata). However, if you are familiar with commnand line tools, you can also use this program in your personal computer too.
 
 User's private data are not accessible by other users or web application administrator if his/her data server is in localhost or local network.
 
