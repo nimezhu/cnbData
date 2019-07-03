@@ -1,4 +1,6 @@
 # Nucleome Server 
+Obsoleted,
+Move to http://github.com/nucleome/nucleserver
 
 ## Introduction
 
